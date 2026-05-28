@@ -1,0 +1,30 @@
+name: Daily README update
+
+on:
+  schedule:
+    - cron: "0 16 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update file
+        run: |
+          echo "Updated at $(date)" > daily-log.txt
+
+      - name: Commit changes
+        run: |
+          git config user.name "shemaiahezra-m"
+          git config user.email "230293707+shemaiahezra-m@users.noreply.github.com"
+
+          git add .
+          git commit -m "daily update" || echo "No changes"
+
+          git push
