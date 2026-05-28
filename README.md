@@ -7,3 +7,8 @@
 - Reviewed frontend fundamentals
 
 Updated at Fri May 29 00:13:29 PST 2026
+
+## 2026-05-29
+
+### Learning Notes
+- Studied networking concepts
