@@ -1,6 +1,9 @@
+```yml
 name: Smart Daily Dev Log
 
 on:
+  schedule:
+    - cron: "6 16 * * *" # 12:18 AM Philippine time
   workflow_dispatch:
 
 permissions:
@@ -15,11 +18,42 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: true
+          fetch-depth: 0
 
-      - name: Update README
+      - name: Generate smart daily log
         run: |
+          DATE=$(TZ="Asia/Manila" date +"%Y-%m-%d")
+
+          RANDOM_NOTES=(
+            "Reviewed frontend fundamentals"
+            "Practiced Git and GitHub workflow"
+            "Improved UI/UX layout decisions"
+            "Explored responsive design techniques"
+            "Reviewed SQL query structure"
+            "Studied database relationships"
+            "Practiced cleaner code organization"
+            "Reviewed HTML semantic structure"
+            "Improved CSS spacing and layout awareness"
+            "Practiced JavaScript logic basics"
+            "Reviewed project documentation habits"
+            "Studied networking concepts"
+            "Practiced troubleshooting workflow"
+            "Improved understanding of system design"
+            "Reviewed portfolio improvement ideas"
+            "Explored accessibility in web design"
+            "Practiced writing clearer commit messages"
+            "Reviewed form design and user flow"
+            "Studied dashboard layout patterns"
+            "Improved development consistency"
+          )
+
+          RANDOM_INDEX=$((RANDOM % ${#RANDOM_NOTES[@]}))
+
           echo "" >> README.md
-          echo "Updated at $(TZ='Asia/Manila' date)" >> README.md
+          echo "## $DATE" >> README.md
+          echo "" >> README.md
+          echo "### Learning Notes" >> README.md
+          echo "- ${RANDOM_NOTES[$RANDOM_INDEX]}" >> README.md
 
       - name: Commit changes
         run: |
@@ -27,6 +61,7 @@ jobs:
           git config --global user.email "230293707+shemaiahezra-m@users.noreply.github.com"
 
           git add README.md
-          git commit -m "docs: auto update" || echo "No changes"
+          git commit -m "docs: auto update daily log" || echo "No changes"
 
           git push
+```
