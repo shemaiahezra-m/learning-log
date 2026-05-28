@@ -1,8 +1,6 @@
 name: Smart Daily Dev Log
 
 on:
-  schedule:
-    - cron: "6 16 * * *" # 12:06 AM PH time
   workflow_dispatch:
 
 permissions:
@@ -13,50 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          persist-credentials: true
 
-      - name: Generate smart daily log
+      - name: Update README
         run: |
-          DATE=$(TZ="Asia/Manila" date +"%Y-%m-%d")
-          START_DATE="$DATE 00:00:00 +0800"
-          END_DATE="$DATE 23:59:59 +0800"
-
-          COMMITS=$(git log --since="$START_DATE" --until="$END_DATE" --pretty=format:"- %s" --author="shemaiahezra-m" --invert-grep --grep="docs: update daily dev log")
-
-          RANDOM_NOTES=(
-            "Reviewed frontend fundamentals"
-            "Practiced Git and GitHub workflow"
-            "Improved UI/UX layout decisions"
-            "Explored responsive design techniques"
-            "Reviewed SQL query structure"
-            "Practiced cleaner code organization"
-            "Improved development consistency"
-          )
-
           echo "" >> README.md
-          echo "## $DATE" >> README.md
+          echo "Updated at $(TZ='Asia/Manila' date)" >> README.md
 
-          if [ -n "$COMMITS" ]; then
-            echo "### Manual commits today" >> README.md
-            echo "$COMMITS" >> README.md
-          else
-            RANDOM_INDEX=$((RANDOM % ${#RANDOM_NOTES[@]}))
-            echo "### Learning notes" >> README.md
-            echo "- ${RANDOM_NOTES[$RANDOM_INDEX]}" >> README.md
-          fi
-
-          RANDOM_INDEX=$((RANDOM % ${#RANDOM_NOTES[@]}))
-          echo "" >> README.md
-          echo "### Daily reflection" >> README.md
-          echo "- ${RANDOM_NOTES[$RANDOM_INDEX]}" >> README.md
-
-      - name: Commit and push changes
+      - name: Commit changes
         run: |
-          git config user.name "shemaiahezra-m"
-          git config user.email "230293707+shemaiahezra-m@users.noreply.github.com"
+          git config --global user.name "shemaiahezra-m"
+          git config --global user.email "230293707+shemaiahezra-m@users.noreply.github.com"
 
           git add README.md
-          git commit -m "docs: update daily dev log" || echo "No changes to commit"
+          git commit -m "docs: auto update" || echo "No changes"
+
           git push
