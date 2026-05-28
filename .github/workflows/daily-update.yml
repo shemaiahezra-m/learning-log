@@ -1,9 +1,8 @@
-```yml
 name: Smart Daily Dev Log
 
 on:
   schedule:
-    - cron: "6 16 * * *" # 12:18 AM Philippine time
+    - cron: "6 16 * * *"
   workflow_dispatch:
 
 permissions:
@@ -62,6 +61,4 @@ jobs:
 
           git add README.md
           git commit -m "docs: auto update daily log" || echo "No changes"
-
           git push
-```
