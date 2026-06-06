@@ -52,3 +52,8 @@ Updated at Fri May 29 00:13:29 PST 2026
 
 ### Learning Notes
 - Improved understanding of system design
+
+## 2026-06-07
+
+### Learning Notes
+- Reviewed HTML semantic structure
