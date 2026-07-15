@@ -247,3 +247,8 @@ Updated at Fri May 29 00:13:29 PST 2026
 
 ### Learning Notes
 - Studied database relationships
+
+## 2026-07-16
+
+### Learning Notes
+- Practiced Git and GitHub workflow
