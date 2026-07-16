@@ -252,3 +252,8 @@ Updated at Fri May 29 00:13:29 PST 2026
 
 ### Learning Notes
 - Practiced Git and GitHub workflow
+
+## 2026-07-17
+
+### Learning Notes
+- Reviewed form design and user flow
