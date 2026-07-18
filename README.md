@@ -262,3 +262,8 @@ Updated at Fri May 29 00:13:29 PST 2026
 
 ### Learning Notes
 - Improved development consistency
+
+## 2026-07-19
+
+### Learning Notes
+- Studied database relationships
