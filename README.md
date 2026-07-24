@@ -292,3 +292,8 @@ Updated at Fri May 29 00:13:29 PST 2026
 
 ### Learning Notes
 - Practiced JavaScript logic basics
+
+## 2026-07-25
+
+### Learning Notes
+- Reviewed SQL query structure
